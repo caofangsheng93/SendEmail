@@ -32,7 +32,7 @@ namespace SendEmail.Common
             WebMail.UserName = sendEmail;//EmailId used to send emails from application(发件人)
             WebMail.Password = sendEmailPWD;//发件人密码（如果开通了授权码就要使用授权密码）
             WebMail.From = sendEmail; //email sender email address.
-            WebMail.Send(to: toEmail, subject: subject, body: body, cc: cc, bcc: bcc, isBodyHtml: true);
+            WebMail.Send(to: toEmail, subject: subject, body: body, cc: cc, bcc: bcc, isBodyHtml: isBodyHtml);
 
         }
         #endregion

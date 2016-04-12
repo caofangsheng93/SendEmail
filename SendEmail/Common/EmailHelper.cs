@@ -9,9 +9,14 @@ namespace SendEmail.Common
 {
     public class EmailHelper
     {
-        //发件人邮箱和密码
+        //发件人邮箱
         private static readonly string sendEmail = ConfigurationManager.AppSettings["SendEmail"];
+        //发件人密码
         private static readonly string sendEmailPWD = ConfigurationManager.AppSettings["SendEmailPWD"];
+        //邮箱服务器
+        private static readonly string sendEmailServer = ConfigurationManager.AppSettings["SendEmailServer"];
+        //邮箱端口
+        private static readonly int sendEmailPort = Convert.ToInt32(ConfigurationManager.AppSettings["SendEmailPort"].ToString());
 
         #region 发邮件
         /// <summary>
@@ -25,8 +30,8 @@ namespace SendEmail.Common
         /// <param name="isBodyHtml">是否有Body主体</param>
         public static void SendEmail(string toEmail, string subject, string body, string cc, string bcc, bool isBodyHtml = true)
         {
-            WebMail.SmtpServer = "smtp.163.com"; //gmail smtp server
-            WebMail.SmtpPort = 25; //gmail port to send emails
+            WebMail.SmtpServer = sendEmailServer; //gmail smtp server
+            WebMail.SmtpPort = sendEmailPort; //gmail port to send emails
             WebMail.SmtpUseDefaultCredentials = true;
             WebMail.EnableSsl = true; //sending emails with secure protocol
             WebMail.UserName = sendEmail;//EmailId used to send emails from application(发件人)
